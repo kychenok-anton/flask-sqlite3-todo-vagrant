@@ -1,66 +1,71 @@
-## flask-sqlite3-todo-vagrant-kych
+# Покрокова інструкція по налаштуванню середовища для Flask Todo App з використанням Vagrant та SQLite
 
-\# Flask Todo CRUD Application
+Ця інструкція допоможе вам налаштувати середовище для запуску проєкту **Flask Todo App** за допомогою **Vagrant** та **SQLite**.
+Встановіть необхідні програми на вашому комп'ютері**:
+   - [VirtualBox](https://www.virtualbox.org/) — для віртуалізації.
+   - [Vagrant](https://www.vagrantup.com/) — для управління віртуальними машинами.
+   - [Git](https://git-scm.com/) — для роботи з репозиторієм.
 
-
-
-\## Project Description
-
-This is a simple Flask web application providing CRUD functionality for a Todo list using SQLite. The project is designed for easy local development and deployment.
-
-
-
-\## How to Add New Code
-
-1\. Clone the repository:
-
-git clone https://github.com/<your-username>/flask-sqlite3-todo-vagrant.git
+Скачайте репозиторій на свій комп'ютер за допомогою Git:
+Відкрийте термінал (на Windows можна використовувати Git Bash або PowerShell).
+Виконайте команду:
+git clone https://github.com/kychenok-anton/flask-sqlite3-todo-vagrant.git
+Перейдіть у директорію проєкту
 
 
+В директорії проєкту виконайте команду:
+   vagrant up
+   Підключення до віртуальної машини:
+Після запуску віртуальної машини вам потрібно підключитися до неї через SSH:
+vagrant ssh
 
-2\. Create a new branch for your feature or bug fix:
+Створення віртуального середовища для Python:
+Після підключення до віртуальної машини створіть та активуйте віртуальне середовище для Python:
+python3 -m venv venv
+source venv/bin/activate
 
-git checkout -b feature/<feature-name>
-
-
-
-3\. Make your code changes.
-
-
-
-4\. Stage and commit your changes:
-
-git add .
-
-git commit -m "Describe your changes"
-
-
-
-5\. Push your branch to the remote repository:
-
-git push origin feature/<feature-name>
-
-
-
-6\. Create a Pull Request to merge your changes into main.
-
-## 
-
-## How to Deploy the Application
-
-
-
-1. Install dependencies:
-
+Встановлення залежностей:
+Переконайтесь, що ви знаходитесь в директорії проєкту, і встановіть усі необхідні бібліотеки:
 pip install -r requirements.txt
 
+Налаштування бази даних:
+Якщо база даних не була створена раніше, виконайте команду для її ініціалізації:
+python3
+from app import db
+db.create_all()
+
+Запуск Flask додатку:
+Для запуску програми використовуйте команду:
+python3 app.py
+
+Перевірка роботи:
+Відкрийте браузер і перейдіть за посиланням:
+http://127.0.0.1:5000
+або
+http://10.0.2.15:5000
+
+Вирішення можливих проблем
+
+Помилка "no such table: todo":
+Якщо при відкритті сторінки з'являється помилка типу no such table: todo, це означає, що база даних ще не була створена. Виконайте команду для ініціалізації таблиці:
+python3
+from app import db
+db.create_all()
+
+Помилка з підключенням до порту 5000:
+Якщо при спробі підключитися до веб-додатку з'являється помилка підключення або Connection refused, це може бути через неправильну настройку порту або доступу. Переконайтесь, що додаток працює на правильному порту і доступний з хостової машини.
+
+Проблеми з Python середовищем:
+Якщо Flask або інші залежності не встановлюються коректно, переконайтесь, що ви працюєте в активованому віртуальному середовищі Python. Для цього виконайте:
+source venv/bin/activate
+
+Вихід з SSH:
+Після завершення роботи ви можете вийти з віртуальної машини, використовуючи команду:
+exit
+
+Зупинка віртуальної машини:
+Для вимкнення віртуальної машини використовуйте команду:
+vagrant halt
 
 
-2\. Run the Flask app:
-
-flask run
-
-
-
-3\. Open your browser at http://localhost:5000.
 
