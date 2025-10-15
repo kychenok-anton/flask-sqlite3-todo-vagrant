@@ -6,7 +6,7 @@
 
 \## Project Description
 
-This is a simple Flask web application providing CRUD functionality for a Todo list using SQLite. Users can create, view, update, and delete tasks. The project is designed for easy local development and deployment.
+This is a simple Flask web application providing CRUD functionality for a Todo list using SQLite. The project is designed for easy local development and deployment.
 
 
 
